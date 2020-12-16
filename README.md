@@ -12,3 +12,6 @@ Run `train.py`
 ## Testing
 
 Run `runner.py`
+
+
+Run above code on colab - https://colab.research.google.com/drive/1rtbWuT1cA94mJDaGr-brAPd31VGHvnb0?usp=sharing 
