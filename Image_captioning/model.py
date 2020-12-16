@@ -85,7 +85,7 @@ class DecoderRNN(nn.Module):
         # change inputs 
         inputs = self.embed(out.unsqueeze(0))  # here remember one thing - initially we squeeze output on dim=0 now during unsqueezing we have to unsqueeze on dim = 1
         word_len+=1
-        if out == 1:
+        if out == 2:
           break
       # convert indices to tokens
       out_caption = [vocabulary.tois[out] for out in out_list] # out_list is a list of indices of tokens(captions)
@@ -110,39 +110,6 @@ class CNNtoRNN(nn.Module):
         outputs = self.decoderrnn(features, captions) # here captions specifies some part of string as captions_train and captions_target wouild be ground truth
         return outputs
 
-    
-    ### TESTING
-    def caption_image(self, image, vocabulary, max_length=50):
-      result_caption = []
-
-      with torch.no_grad():
-          # print("Image Shape : ", image.shape)
-          # print(self.encoderCNN(image).shape)
-          self.encodercnn.eval()
-          self.decoderrnn.eval()
-          
-          x = self.encodercnn(image) # encoded image
-          #print('image_size',x.size())
-          hidden_state = torch.zeros((x.size(0),self.decoderrnn.hidden_size)).cuda()
-          cell_state = torch.zeros((x.size(0),self.decoderrnn.hidden_size)).cuda()
-          #print('hidden_state',hidden_state.size())
-          for _ in range(max_length): # maximum length of image
-              # print(x.shape)
-              hidden_state,cell_state = self.decoderrnn.lstmcell(x, (hidden_state,cell_state))
-              #print('_',_)
-              output = self.decoderrnn.linear(hidden_state)
-              #print('hidden_state',hidden_state)
-              predicted = output.argmax(1)
-              #print('output',output.size())
-              #print('predicted',predicted.size())
-              #print('predicted_item',predicted.item())
-              result_caption.append(predicted.item())
-              x = self.decoderrnn.embed(predicted).squeeze(1)
-              #print('updated_x',x.size())
-              if vocabulary.tois[predicted.item()] == "<EOS>":
-                  break
-
-          return ' '.join([vocabulary.tois[idx] for idx in result_caption])
 
 
         
