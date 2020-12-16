@@ -1,2 +1,14 @@
 # Image_Captioning_Flickr_Dataset_Pytorch
-Image captioning on Flickr Dataset using Resnet50 and Inceptionnet_V3
+
+
+## Download Flickr8k_Dataset and move to Flickr8k_Dataset folder 
+
+https://drive.google.com/drive/folders/1vs-E-oYuM7XvVjjiD4Baw4JF8UPSqQMU?usp=sharing
+
+## Training 
+
+Run `train.py`
+
+## Testing
+
+Run `runner.py`
