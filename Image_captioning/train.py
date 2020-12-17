@@ -122,9 +122,9 @@ for epoch in range(0,epochs):
     # avg_loss = sum(losses)/len(losses)
     # let's try to save model in pickle format instead of pth format
     if epoch % save_every == 0:
-      torch.save(decoder.state_dict(),os.path.join('/content/drive/MyDrive/Image_captioning/models','decoder-{}.pkl'.format(epoch)))
-      torch.save(encoder.state_dict(),os.path.join('/content/drive/MyDrive/Image_captioning/models','encoder-{}.pkl'.format(epoch)))
-      torch.save(optimizer.state_dict(),os.path.join('/content/drive/MyDrive/Image_captioning/models','optim-{}.pkl'.format(epoch)))
+      torch.save(decoder.state_dict(),os.path.join('/models','decoder-{}.pkl'.format(epoch)))
+      torch.save(encoder.state_dict(),os.path.join('/models','encoder-{}.pkl'.format(epoch)))
+      torch.save(optimizer.state_dict(),os.path.join('/models','optim-{}.pkl'.format(epoch)))
 
 
 
