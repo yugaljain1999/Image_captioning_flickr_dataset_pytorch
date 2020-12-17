@@ -21,8 +21,8 @@ dataset,loader =  get_loader('Flicker8k_Dataset','captions.txt',transforms=trans
 vocab_size = len(dataset.vocab)
 
 
-encoder_file = 'encoder-19.pkl'
-decoder_file = 'decoder-19.pkl'
+encoder_file = 'encoder-19.pkl' # trained for 20 epochs
+decoder_file = 'decoder-19.pkl' # trained for 20 epochs
 
 
 encoder = EncoderCNN(emb_size)
@@ -31,8 +31,8 @@ decoder = DecoderRNN(emb_size,hid_dim,vocab_size)
 decoder.eval()
 
 # Load last saved weights of encoder and decoder and then pass encoder and decoder to device
-encoder.load_state_dict(torch.load(os.path.join('/content/drive/MyDrive/Image_captioning/models',encoder_file)))
-decoder.load_state_dict(torch.load(os.path.join('/content/drive/MyDrive/Image_captioning/models',decoder_file)))
+encoder.load_state_dict(torch.load(os.path.join('/models',encoder_file)))
+decoder.load_state_dict(torch.load(os.path.join('/models',decoder_file)))
 
 # Pass encoder and decoder to device(if CUDA is available)
 encoder.to(device)
