@@ -88,28 +88,8 @@ class DecoderRNN(nn.Module):
         if out == 2:
           break
       # convert indices to tokens
-      out_caption = [vocabulary.tois[out] for out in out_list] # out_list is a list of indices of tokens(captions)
+      out_caption = [vocabulary.tois[out] for out in out_list][1:-1] # out_list is a list of indices of tokens(captions)
     return " ".join(out_caption)
-
-
-
-
-class CNNtoRNN(nn.Module):
-    def __init__(self, embed_size, hidden_size, vocab_size, num_layers):
-        super(CNNtoRNN, self).__init__()
-        # print("Model Specs")
-        # print("Embed size : ", embed_size)
-        # print("Hidden size : ", hidden_size)
-        # print("Vocab size : ", vocab_size)
-        self.encodercnn = EncoderCNN(embed_size)
-        self.decoderrnn = DecoderRNN(embed_size, hidden_size, vocab_size, num_layers=1)
-
-
-    def forward(self, images, captions):
-        features = self.encodercnn(images)
-        outputs = self.decoderrnn(features, captions) # here captions specifies some part of string as captions_train and captions_target wouild be ground truth
-        return outputs
-
 
 
         
