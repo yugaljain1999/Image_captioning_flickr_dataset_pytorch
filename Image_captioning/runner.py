@@ -39,7 +39,7 @@ encoder.to(device)
 decoder.to(device)
 
 
-img_file = '/content/drive/MyDrive/Image_captioning/test_images/horse.png'
+img_file = '/content/Image_captioning_flickr_dataset_pytorch/Image_captioning/tmp/images/27782020_4dab210360.jpg'
 img_transform = transform(Image.open(img_file).convert('RGB')).unsqueeze(0)
 
 features = encoder(img_transform.to(device)).unsqueeze(1) # add extra dimension to features
