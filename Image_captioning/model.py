@@ -70,7 +70,7 @@ class DecoderRNN(nn.Module):
 
   def sample(self,inputs,vocabulary,max_len=20):
     # here inputs are captions
-    hidden = (torch.zeros(1,inputs.shape[0],self.hidden_size),torch.zeros(1,inputs.shape[0],self.hidden_size))
+    hidden = (torch.zeros(1,inputs.shape[0],self.hidden_size,device=device),torch.zeros(1,inputs.shape[0],self.hidden_size,device=device))
     #hidden = self.init_hidden(inputs.shape[0]).cpu().detach()
     out_list = []
     word_len = 0
